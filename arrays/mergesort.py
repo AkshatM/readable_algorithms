@@ -9,15 +9,17 @@ def mergesort(array):
         if B == []:
             return A
 
-        if A[0] > B[0]:
-            return [A[0]] + merge(A[1:], B)
+        first_element_A, first_element_B = A[0], B[0]
 
-        if B[0] > A[0]:
-            return [B[0]] + merge(A, B[1:])
+        if first_element_A > first_element_B:
+            return [first_element_A] + merge(A[1:], B)
+
+        if first_element_B > first_element_A:
+            return [first_element_B] + merge(A, B[1:])
     
     if len(array) == 1:
         return array
     
-    midpoint = floor(len(array)/2)
-    return merge(mergesort(array[:midpoint]), mergesort(array[midpoint:]))
+    midpoint = len(array)//2
+    return merge(mergesort(array[:midpoint]), mergesort(array[midpoint+1:]))
 
